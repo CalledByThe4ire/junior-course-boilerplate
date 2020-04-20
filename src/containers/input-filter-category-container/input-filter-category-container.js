@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import InputFilterCategory from '../../components/input-filter-category';
-import { productsActions } from '../../redux';
+import { filterActions } from '../../redux';
 
 class InputFilterCategoryContainer extends PureComponent {
   handleClick = event => {
@@ -20,9 +20,10 @@ class InputFilterCategoryContainer extends PureComponent {
     );
 
     updateFilterCategories({ categories: updatedCategories });
-    const state = window.history.state;
 
+    const state = window.history.state;
     const searchParams = new URLSearchParams(window.location.search);
+
     searchParams.delete('category');
 
     Object.keys(updatedCategories).forEach(category => {
@@ -43,12 +44,10 @@ class InputFilterCategoryContainer extends PureComponent {
       `?${searchParams.toString()}`
     );
   };
+
   render() {
-    const {
-      categories,
-      updateFilterCategories,
-      ...restProps
-    } = this.props;
+    const { categories, updateFilterCategories, ...restProps } = this.props;
+
     return (
       <InputFilterCategory handleClick={this.handleClick} {...restProps} />
     );
@@ -56,11 +55,12 @@ class InputFilterCategoryContainer extends PureComponent {
 }
 
 const mapDispatchToProps = dispatch => {
-  const {updateFilterCategories} = bindActionCreators(productsActions, dispatch);
-  return {updateFilterCategories};
-}
+  const { updateFilterCategories } = bindActionCreators(
+    filterActions,
+    dispatch
+  );
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(InputFilterCategoryContainer);
+  return { updateFilterCategories };
+};
+
+export default connect(null, mapDispatchToProps)(InputFilterCategoryContainer);
