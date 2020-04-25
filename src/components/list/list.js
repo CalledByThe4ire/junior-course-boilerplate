@@ -9,7 +9,7 @@ import ItemRating from '../item-rating';
 import Price from '../price';
 
 const List = props => {
-  const { list } = props;
+  const { list, handleClick } = props;
   const listElements = list.map(product => {
     const {
       id,
@@ -26,6 +26,7 @@ const List = props => {
       <li
         key={id}
         className={classnames(styles.ListItem)}
+        onClick={() => handleClick(id)}
       >
         <ItemList
           isInStock={isInStock}

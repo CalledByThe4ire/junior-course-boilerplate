@@ -1,29 +1,25 @@
 import React from 'react';
+import { Route, withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 
 import styles from './app.module.scss';
-import Header from '../header';
-import FilterContainer from '../../containers/filter-container';
-import ListContainer from '../../containers/list-container';
-import PaginationContainer from '../../containers/pagination-container';
+import HomePage from '../pages/home-page';
+import ItemContainer from '../../containers/item-container';
 
 const App = () => {
   return (
     <div className={classnames(styles.App)}>
-      <div className={styles.AppHeader}>
-        <Header header="Список Товаров" />
-      </div>
-      <div className={styles.AppBody}>
-        <aside className={styles.AppSidebar}>
-          <FilterContainer />
-        </aside>
-        <main className={styles.AppMain}>
-          <ListContainer />
-          <PaginationContainer />
-        </main>
-      </div>
+      <Route exact path="/" component={HomePage} />
+
+      <Route
+        path="/product/:id"
+        render={({ match: { params } }) => {
+          const { id } = params;
+          return <ItemContainer id={Number(id)} />;
+        }}
+      />
     </div>
   );
 };
 
-export default App;
+export default withRouter(App);
