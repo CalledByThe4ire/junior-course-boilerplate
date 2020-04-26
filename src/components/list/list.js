@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import styles from './list.module.scss';
 
 import ItemList from 'csssr-school-product-card';
-import ItemRating from '../item-rating';
+import ItemRating from '../product-rating';
 import Price from '../price';
 
 const List = props => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './home-page.module.scss';
+import styles from './products.module.scss';
 import Header from '../header';
 import FilterContainer from '../../containers/filter-container/';
 import ListContainer from '../../containers/list-container';
@@ -8,15 +8,15 @@ import PaginationContainer from '../../containers/pagination-container';
 
 const HomePage = () => {
   return (
-    <div className={styles.HomePage}>
-      <div className={styles.HomePageHeader}>
+    <div className={styles.Products}>
+      <div className={styles.ProductsHeader}>
         <Header header="Список Товаров" />
       </div>
-      <div className={styles.HomePageBody}>
-        <aside className={styles.HomePageSidebar}>
+      <div className={styles.ProductsBody}>
+        <aside className={styles.ProductsSidebar}>
           <FilterContainer />
         </aside>
-        <main className={styles.HomePageMain}>
+        <main className={styles.ProductsMain}>
           <ListContainer />
           <PaginationContainer />
         </main>

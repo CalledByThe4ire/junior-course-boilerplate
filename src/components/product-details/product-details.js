@@ -3,23 +3,23 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import classnames from 'classnames';
-import styles from './item.module.scss';
+import styles from './product-details.module.scss';
 
-import ItemCard from 'csssr-school-product-card';
-import ItemRating from '../item-rating';
+import ProductCard from 'csssr-school-product-card';
+import ProductRating from '../product-rating';
 import Price from '../price';
 
-const Item = props => {
-  const { item = {} } = props;
-  const { title = 'Товар не найден' } = item;
+const ProductDetails = props => {
+  const { product = {} } = props;
+  const { title = 'Товар не найден' } = product;
 
   return (
-    <div className={classnames(styles.Item)}>
-      <div className={classnames(styles.ItemWrapper)}>
+    <div className={classnames(styles.ProductDetails)}>
+      <div className={classnames(styles.ProductDetailsWrapper)}>
         <Link
           to="/"
           onClick={props.goBack}
-          className={classnames(styles.ItemLink)}
+          className={classnames(styles.ProductDetailsLink)}
         >
           <svg width={18} height={12}>
             <title>arrow</title>
@@ -29,24 +29,24 @@ const Item = props => {
             />
           </svg>
         </Link>
-        <h3 className={classnames(styles.ItemHeader)}>{title}</h3>
+        <h3 className={classnames(styles.ProductDetailsHeader)}>{title}</h3>
       </div>
-      {Object.entries(item).length !== 0 ? (
-        <ItemCard
-          isInStock={item.isInStock}
-          img={item.img}
+      {Object.entries(product).length !== 0 ? (
+        <ProductCard
+          isInStock={product.isInStock}
+          img={product.img}
           title={title}
-          maxRating={item.maxRating}
-          rating={item.rating}
-          price={<Price price={item.price} />}
+          maxRating={product.maxRating}
+          rating={product.rating}
+          price={<Price price={product.price} />}
           subPriceContent={
-            item.subPriceContent ? (
-              <Price price={item.subPriceContent} isPrimary={false} />
+            product.subPriceContent ? (
+              <Price price={product.subPriceContent} isPrimary={false} />
             ) : (
               ''
             )
           }
-          ratingComponent={ItemRating}
+          ratingComponent={ProductRating}
         />
       ) : (
         <div>
@@ -277,7 +277,7 @@ const Item = props => {
   );
 };
 
-Item.propTypes = {
+ProductDetails.propTypes = {
   item: propTypes.shape({
     isInStock: propTypes.bool,
     img: propTypes.string,
@@ -291,4 +291,4 @@ Item.propTypes = {
   })
 };
 
-export default Item;
+export default ProductDetails;
